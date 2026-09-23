@@ -4,6 +4,7 @@ DB_NAME = "grade_tracker.db"
 
 def get_connection():
     conn = sqlite3.connect(DB_NAME)
+    conn.execute("PRAGMA foreign_keys = ON")
     return conn
 
 def create_tables():
@@ -25,7 +26,7 @@ CREATE TABLE IF NOT EXISTS grades (
                    course TEXT NOT NULL,
                    score REAL,
                    semister TEXT,
-                   FOREIGN KEY (student_id) REFERENCES students (id)
+                   FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE
 )""")
     
     conn.commit() 
@@ -132,9 +133,8 @@ def delete_student(student_id):
     conn = get_connection() 
     cursor = conn.cursor() 
     
-    cursor.execute("DELETE FROM grades WHERE student_id = ?", (student_id,))
     cursor.execute("DELETE FROM students WHERE id =?", (student_id,))
-     
+
     conn.commit() 
     conn.close() 
     print(f"Deleted student {student_id} and their grades.")        

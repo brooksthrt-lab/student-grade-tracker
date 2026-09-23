@@ -8,7 +8,8 @@ A command-line application to manage students and their grades, built with Pytho
 - View all students
 - View a full report per student (grades + average score)
 - Update a grade
-- Delete a student (and their associated grades)
+- Delete a student (with automatic cascade delete of their grades)
+- Input validation on all fields (prevents crashes from invalid input)
 
 ## Tech Stack
 - Python 3.12
@@ -25,8 +26,9 @@ A command-line application to manage students and their grades, built with Pytho
 - Using parameterized SQL queries to prevent SQL injection
 - Separating data logic (`database.py`) from application logic (`main.py`)
 - Basic CRUD operations (Create, Read, Update, Delete) with SQLite
+- Enforcing referential integrity with foreign keys and ON DELETE CASCADE
+- Handling invalid user input gracefully with try/except
 
 ## Future Improvements
-- Add input validation (e.g., prevent negative scores)
-- Enforce foreign key constraints properly (ON DELETE CASCADE)
 - Build a web version using Flask
+- Add more robust error handling and logging
