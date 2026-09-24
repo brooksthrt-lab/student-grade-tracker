@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Report</title>
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/add-student">Add Student</a> |
+            <a href="/add-grade">Add Grade</a>
+        </nav>
+        <hr>
+        {% if student %}
+        <h1>Report for {{ student[1] }}</h1>
+        <p>Department: {{ student[2] }} | Year: {{ student[3] }}</p>
+
+        <h3>Grades:</h3>
+        <ul>
+            {% for grade in grades %}
+                <li>{{ grade[0] }}: {{ grade[1] }} ({{ grade[2] }})</li>
+            {% endfor %}
+        </ul>
+
+        {% if grades %}
+            <p><strong>Average: {{ average }}</strong></p>
+        {% else %}
+            <p>No grades recorded yet.</p>
+        {% endif %}
+    {% else %}
+        <p>No student found with that ID.</p>
+    {% endif %}
+    </body>
+</html>

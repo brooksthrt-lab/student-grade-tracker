@@ -4,11 +4,23 @@
         <title>Student Grade Tracker</title>
     </head>
     <body>
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/add-student">Add Student</a> |
+            <a href="/add-grade">Add Grade</a>
+        </nav>
+        <hr>
         <h1>All Students</h1>
         <u1>
             {% for student in students %}
                 <li>{{ student[1] }} - {{ student[2] }} - Year {{ student[3] }}</li>
                 {% endfor %}
         </u1>
+
+        <h3>View Student Report</h3>
+        <form method="GET", action="/report">
+            <input type="number", name="student_id" placeholder="Enter Student ID" required>
+            <button type="submit">View Report</button>
+        </form>
     </body>
 </html>
