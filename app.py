@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from database import create_tables, get_all_students, add_student, add_grade, get_student_with_grades
+from database import create_tables, get_all_students, add_student, add_grade, get_student_with_grades, update_grade, delete_student
 
 app = Flask(__name__)
 
@@ -44,6 +44,24 @@ def report_page():
     
     return render_template("report.html", student=student, grades=grades, average=average)
 
+@app.route("/update-grade", methods=["GET", "POST"])
+def update_grade_page():
+    if request.method == "POST":
+        grade_id = int(request.form["grade_id"])
+        new_score = float(request.form["new_score"])
+        update_grade(grade_id, new_score)
+        return "Grade Updated! <a href='/'>View all students</a>"
+    
+    return render_template("update_grade.html")
+
+@app.route("/delete-student", methods=["GET", "POST"])
+def delete_student_page():
+    if request.method == "POST":
+        student_id = int(request.form["student_id"])
+        delete_student(student_id)
+        return "Student deleted! <a href='/'>View all students</a>"
+    
+    return render_template("delete_student.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

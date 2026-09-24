@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Student</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/add-student">Add Student</a> |
+        <a href="/add-grade">Add Grade</a> |
+        <a href="/update-grade">Update Grade</a> |
+        <a href="/delete-student">Delete Student</a> 
+    </nav>
+    <hr>
+
+    <h1>Delete Student</h1>
+    <p>Warning: this will also delete all of this student's grades.</p>
+    <form method="POST">
+        <label>Student ID</label>
+        <input type="number" name="student_id" required><br><br>
+
+        <button type="submit">Delete Student</button>
+    </form>
+</body>
+</html>
